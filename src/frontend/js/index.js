@@ -1,5 +1,3 @@
-import '../styles/index.css';
-import testmod from './testmod';
+import './index.css';
 
-
-console.log('lol?????');
+console.log('Hello!');
