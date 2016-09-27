@@ -1,22 +1,10 @@
-import bodyParser from 'body-parser';
-import compression from 'compression';
-import cookieParser from 'cookie-parser';
-import routers from '../routers';
-import headers from './headers';
+import staticServ from 'koa-static';
+import router from '../router';
 
-export default ({ app, express }) => {
-  const staticDir = './app/public';
 
-  app.use(compression()); // enable gzip
-
-  headers(app);
-
-  app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(bodyParser.json());
-
-  app.use(cookieParser());
-
-  app.use('/', express.static(staticDir));
-
-  routers({ app });
+export default ({ app }) => {
+  app
+    .use(staticServ('./app/public'))
+    .use(router.routes())
+    .use(router.allowedMethods());
 };

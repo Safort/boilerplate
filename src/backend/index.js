@@ -1,13 +1,13 @@
-import express from 'express';
+import Koa from 'koa';
 import middleware from './middleware';
 import * as config from './config';
 
-const app = express();
-const port = config.server.port;
-const host = config.server.host;
+const serverHost = config.server.host;
+const serverPort = config.server.port;
+const app = new Koa();
 
-middleware({ app, express });
+middleware({ app });
 
-app.listen(port, host, () => {
-  console.log(`Server running at ${host}:${port}`);
+app.listen(serverPort, serverHost, () => {
+  console.log(`\n Started on http://${serverHost}:${serverPort} \n`);
 });
