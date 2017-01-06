@@ -11,12 +11,13 @@ import Page1 from '../components/page1/index.jsx';
 import Page2 from '../components/page2/index.jsx';
 import NoMatch from '../components/no-match/index.jsx';
 
+import styles from './index.css';
+
 
 const App = props => (
   <BrowserRouter>
-    <div className="app">
+    <div className={styles.app}>
       <Menu />
-
       <div className="pages">
           <Match exactly pattern="/" component={Home} />
           <Match pattern="/page1" component={Page1} />
