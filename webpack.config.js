@@ -3,6 +3,7 @@ const precss = require('precss');
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const isDev = NODE_ENV === 'development';
@@ -27,6 +28,7 @@ const output = {
 
 const plugins = [
   new webpack.NoErrorsPlugin(),
+  new ExtractTextPlugin('styles.css', { allChunks: true }),
   new HtmlWebpackPlugin({
     title: 'Title',
     filename: 'index.html',
@@ -38,15 +40,9 @@ const plugins = [
 ];
 
 if (isDev) {
-  plugins.unshift(
-    new webpack.HotModuleReplacementPlugin()
-  );
+  plugins.unshift(new webpack.HotModuleReplacementPlugin());
 } else {
-  plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true
-    })
-  );
+  plugins.push(new webpack.optimize.UglifyJsPlugin({ sourceMap: true }));
 }
 
 
@@ -66,7 +62,7 @@ module.exports = {
       },
       {
         test:   /\.css$/,
-        loader: "style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]"
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
       }
     ],
   },
