@@ -11,13 +11,5 @@ export default function configureStore(initialState) {
     applyMiddleware(thunk, ping),
   );
 
-  if (module.hot) {
-    /* eslint global-require: 0 */
-    module.hot.accept('../reducers', () => {
-      const nextRootReducer = require('../reducers');
-      store.replaceReducer(nextRootReducer);
-    });
-  }
-
   return store;
 }

@@ -7,9 +7,24 @@ import configureStore from './store/configureStore';
 
 const store = configureStore();
 
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.querySelector('.root'),
-);
+const renderApp = (Component = App) => {
+  render(
+    <Provider store={store}>
+      <Component />
+    </Provider>,
+    document.querySelector('.root'),
+  );
+};
+
+
+if (module.hot) {
+  module.hot.accept('./reducers/index.js', () => {
+    const NextReducer = require('./reducers/index.js').default;
+
+    store.replaceReducer(NextReducer);
+  });
+
+  module.hot.accept('./containers/index.jsx', () => renderApp());
+}
+renderApp();
+

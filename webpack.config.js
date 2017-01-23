@@ -1,4 +1,4 @@
-const path = require('path');
+const { resolve, join } = require('path');
 const precss = require('precss');
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
@@ -12,31 +12,39 @@ let entry;
 
 if (isDev) {
   entry = [
+    'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:3000/',
-    'webpack/hot/dev-server',
-    './js/index'
+    'webpack/hot/only-dev-server',
+    './js/index.js',
   ];
 } else {
-  entry = './js/index';
+  entry = './js/index.js';
 }
 
 const output = {
-  path: path.resolve(__dirname, 'app/public'),
+  path: resolve(__dirname, 'app/public'),
   publicPath: '/',
-  filename: 'bundle.js'
+  filename: 'bundle.js',
 };
 
 const plugins = [
-  new webpack.NoErrorsPlugin(),
-  new ExtractTextPlugin('styles.css', { allChunks: true }),
+  new webpack.LoaderOptionsPlugin({
+    options: {
+      postcss() {
+        return [precss, autoprefixer];
+      } 
+    }
+  }),
+  new webpack.NoEmitOnErrorsPlugin(),
+  new ExtractTextPlugin({ filename: 'styles.css', allChunks: true }),
   new HtmlWebpackPlugin({
     title: 'Title',
     filename: 'index.html',
-    template: 'templates/index.html'
+    template: 'templates/index.html',
   }),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(NODE_ENV)
-  })
+  }),
 ];
 
 if (isDev) {
@@ -47,7 +55,7 @@ if (isDev) {
 
 
 module.exports = {
-  context: __dirname + '/src/frontend',
+  context: resolve(__dirname, 'src/frontend'),
   entry,
   output,
   watch: isDev,
@@ -58,25 +66,26 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loaders: ['babel-loader'],
-        include: path.join(__dirname, 'src')
+        include: join(__dirname, 'src'),
       },
       {
-        test:   /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
-      }
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+        })
+      },
     ],
   },
 
-  postcss: function () {
-    return [precss, autoprefixer];
-  },
-
   devServer: {
+    hot: true,
+    contentBase: resolve(__dirname, 'app/public'),
     host: 'localhost',
     port: 3000,
-    contentBase: './app/public',
-    historyApiFallback: true,
-    hot: true,
-    headers: { 'Access-Control-Allow-Origin': '*' }
-  }
-}
+  },
+
+  performance: {
+    hints: false
+  },
+};

@@ -14,7 +14,7 @@ import NoMatch from '../components/no-match/index.jsx';
 import styles from './index.css';
 
 
-const App = props => (
+const App = () => (
   <BrowserRouter>
     <div className={styles.app}>
       <Menu />
