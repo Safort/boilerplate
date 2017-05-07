@@ -1,12 +1,11 @@
 'use strict';
 
-const path = require('path');
 const gulp = require('gulp');
-const gutil = require('gulp-util');
 const babel = require('gulp-babel');
 const plumber = require('gulp-plumber');
 const nodemon = require('gulp-nodemon');
 const Cache = require('gulp-file-cache');
+
 const cache = new Cache();
 
 
@@ -18,16 +17,16 @@ gulp.task('watch', ['backend-dev'], () => {
 
   nodemon({
     execMap: {
-      js: 'node'
+      js: 'node',
     },
     script: './app/index.js',
     ignore: [
       'node_modules/',
-      'app/public/'
+      'app/public/',
     ],
     watch: ['app/'],
     ext: 'js',
-    env: { 'NODE_ENV': 'development' },
+    env: { NODE_ENV: 'development' },
   }).on('restart', () => {
     console.log('Restarted!');
   });
@@ -36,20 +35,20 @@ gulp.task('watch', ['backend-dev'], () => {
 });
 
 
-gulp.task('backend-prod', () => {
-  return gulp
+gulp.task('backend-prod', () => (
+  gulp
     .src('./src/backend/**/*.js', { base: './src/backend' })
     .pipe(babel())
-    .pipe(gulp.dest('app/'));
-});
+    .pipe(gulp.dest('app/'))
+));
 
 
-gulp.task('backend-dev', () => {
-  return gulp
+gulp.task('backend-dev', () => (
+  gulp
     .src('./src/backend/**/*.js', { base: './src/backend' })
     .pipe(cache.filter())
     .pipe(plumber())
     .pipe(babel())
     .pipe(cache.cache())
-    .pipe(gulp.dest('app/'));
-});
+    .pipe(gulp.dest('app/'))
+));

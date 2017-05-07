@@ -1,31 +1,34 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { BrowserRouter, Match, Miss } from 'react-router';
+
+import { BrowserRouter as Router  } from 'react-router-dom';
+import { Switch, Route } from 'react-router';
 
 import * as testActions from '../actions/test';
-
-import Menu from '../components/menu/index.jsx';
-import Home from '../components/home/index.jsx';
-import Page1 from '../components/page1/index.jsx';
-import Page2 from '../components/page2/index.jsx';
-import NoMatch from '../components/no-match/index.jsx';
+import Menu from '../components/menu';
+import Home from '../components/home';
+import Page1 from '../components/page1';
+import Page2 from '../components/page2';
+import NoMatch from '../components/no-match';
 
 import styles from './index.css';
 
 
 const App = () => (
-  <BrowserRouter>
+  <Router>
     <div className={styles.app}>
       <Menu />
       <div className="pages">
-          <Match exactly pattern="/" component={Home} />
-          <Match pattern="/page1" component={Page1} />
-          <Match pattern="/page2" component={Page2} />
-          <Miss component={NoMatch} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/page1" component={Page1} />
+          <Route path="/page2" component={Page2} />
+          <Route component={NoMatch} />
+        </Switch>
       </div>
     </div>
-  </BrowserRouter>
+  </Router>
 );
 
 

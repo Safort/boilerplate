@@ -17,10 +17,10 @@ export function requestTestFail(errors) {
   return { type: GET_TEST_FAIL, errors };
 }
 
-export function fetchTest(id) {
+export function fetchTest() {
   return dispatch => {
     requestTest();
-    request('GET', `http://localhost:8080/api/tests`)
+    request('GET', 'http://localhost:8080/api/tests')
     .then(current => dispatch(requestTestSuccess(current)))
     .catch(errors => dispatch(requestTestFail(errors)));
   };

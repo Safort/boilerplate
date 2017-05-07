@@ -15,10 +15,10 @@ if (isDev) {
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:3000/',
     'webpack/hot/only-dev-server',
-    './js/index.js',
+    './js/index.jsx',
   ];
 } else {
-  entry = './js/index.js';
+  entry = './js/index.jsx';
 }
 
 const output = {
@@ -32,8 +32,8 @@ const plugins = [
     options: {
       postcss() {
         return [precss, autoprefixer];
-      } 
-    }
+      }
+    },
   }),
   new webpack.NoEmitOnErrorsPlugin(),
   new ExtractTextPlugin({ filename: 'styles.css', allChunks: true }),
@@ -59,23 +59,37 @@ module.exports = {
   entry,
   output,
   watch: isDev,
-  devtool: isDev ? 'source-map' : null,
+  devtool: isDev ? 'source-map' : false,
   plugins,
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
-        loaders: ['babel-loader'],
+        loader: 'babel-loader',
         include: join(__dirname, 'src'),
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-        })
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+              modules: true,
+              importLoaders: 1,
+              sourceMap: true,
+            },
+          },
+        ],
       },
     ],
+  },
+
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
 
   devServer: {
@@ -86,6 +100,6 @@ module.exports = {
   },
 
   performance: {
-    hints: false
+    hints: false,
   },
 };

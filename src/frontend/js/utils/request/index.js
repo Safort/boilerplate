@@ -2,9 +2,8 @@ function request(reqMethod, url, otherData = {}) {
   const method = reqMethod || 'GET';
   const headers = otherData.headers || {};
   const body = otherData.body || null;
-  /* eslint quote-props: 0 */
   const defaultHeaders = {
-    'Accept': 'application/json',
+    Accept: 'application/json',
     'Content-Type': 'application/json',
     ...headers,
   };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import App from './containers/index.jsx';
+import App from './containers';
 import configureStore from './store/configureStore';
 
 
@@ -27,4 +27,3 @@ if (module.hot) {
   module.hot.accept('./containers/index.jsx', () => renderApp());
 }
 renderApp();
-
