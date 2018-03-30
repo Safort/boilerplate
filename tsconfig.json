@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "sourceMap": true,
+        "jsx": "react",
+        "target": "es5",
+        "rootDirs": ["src", "src_dts"]
+    }
+}

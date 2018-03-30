@@ -1,4 +1,4 @@
-function request(reqMethod, url, otherData = {}) {
+function request(reqMethod, url, otherData?: any) {
   const method = reqMethod || 'GET';
   const headers = otherData.headers || {};
   const body = otherData.body || null;
@@ -8,7 +8,7 @@ function request(reqMethod, url, otherData = {}) {
     ...headers,
   };
 
-  const requestConfig = {
+  const requestConfig: RequestInit = {
     method,
     credentials: 'include',
     headers: defaultHeaders,

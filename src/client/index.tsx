@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './containers';
@@ -16,14 +16,4 @@ const renderApp = (Component = App) => {
   );
 };
 
-
-if (module.hot) {
-  module.hot.accept('./reducers/index.js', () => {
-    const NextReducer = require('./reducers/index.js').default;
-
-    store.replaceReducer(NextReducer);
-  });
-
-  module.hot.accept('./containers/index.jsx', () => renderApp());
-}
 renderApp();

@@ -4,10 +4,10 @@ import rootReducer from '../reducers';
 import ping from '../enhancers/ping';
 
 
-export default function configureStore(initialState) {
+export default function configureStore() {
   const store = createStore(
     rootReducer,
-    initialState,
+    // initialState,
     applyMiddleware(thunk, ping),
   );
 
