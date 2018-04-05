@@ -2,7 +2,6 @@
 /app
 
 /.vscode
-/.gulp-cache
 /src_dts
 
 /npm-debug.log

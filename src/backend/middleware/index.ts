@@ -1,4 +1,4 @@
-import staticServ from 'koa-static';
+import * as staticServ from 'koa-static';
 import router from '../router';
 
 

@@ -1,4 +1,4 @@
-import Koa from 'koa';
+import * as Koa from 'koa';
 import middleware from './middleware';
 import * as config from './config';
 
