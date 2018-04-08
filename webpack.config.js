@@ -44,11 +44,20 @@ module.exports = {
       title: 'Title',
       filename: 'index.html',
       template: 'templates/index.html',
-    })
+    }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ],
 
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
-  }
+  },
+
+  devServer: {
+    contentBase: join(__dirname, 'app'),
+    compress: true,
+    port: 3000,
+    hot: true
+  },
 
 };
