@@ -2,7 +2,6 @@ const { resolve, join } = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
 module.exports = {
   context: resolve(__dirname, 'src/client'),
   entry: './index.tsx',
@@ -15,9 +14,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        loader: 'ts-loader',
+        test: /\.(tsx?)|(js)?$/,
         include: join(__dirname, 'src'),
+        exclude: [/node_modules/, /src\/client\/index.html/],
+        use: [
+          {
+            loader: 'babel-loader',
+          }
+        ]
       },
       {
         test: /\.css$/,
@@ -28,7 +32,7 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+              localIdentName: '[local]--[hash:base64:8]',
               modules: true,
               importLoaders: 1,
               sourceMap: true,
@@ -40,13 +44,15 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       title: 'Title',
+      alwaysWriteToDisk: true,
       filename: 'index.html',
-      template: 'templates/index.html',
+      template: './index.html',
+      minify: false,
     }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
   ],
 
   resolve: {

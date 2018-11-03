@@ -3,7 +3,8 @@
         "module": "commonjs",
         "sourceMap": true,
         "jsx": "react",
-        "target": "es5",
-        "rootDirs": ["src", "src_dts"]
+        "target": "es6",
+        "noEmit": true,
+        "strict": true,
     }
 }
