@@ -33,7 +33,6 @@ function request(reqMethod, url, otherData?: any) {
     });
 }
 
-
 function get(url, otherData) {
   return request('GET', url, otherData);
 }
@@ -49,7 +48,6 @@ function put(url, otherData) {
 function remove(url, otherData) {
   return request('DELETE', url, otherData);
 }
-
 
 export default request;
 export { get, post, put, remove };

@@ -5,5 +5,4 @@ const router = new koaRouter();
 
 test({ router });
 
-
 export default router;

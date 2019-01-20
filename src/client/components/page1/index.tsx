@@ -1,11 +1,5 @@
 import * as React from 'react';
 
-
-const Page1 = () => (
-  <div className="page1">
-    Page1 content
-  </div>
-);
-
+const Page1 = () => <div className="page1">Page1 content</div>;
 
 export default Page1;

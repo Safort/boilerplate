@@ -1,6 +1,5 @@
 import request from '../utils/request';
 
-
 export const GET_TEST_REQUEST = 'GET_TEST_REQUEST';
 export const GET_TEST_SUCCESS = 'GET_TEST_SUCCESS';
 export const GET_TEST_FAIL = 'GET_TEST_FAIL';
@@ -21,7 +20,7 @@ export function fetchTest() {
   return dispatch => {
     requestTest();
     request('GET', 'http://localhost:8080/api/tests')
-    .then(current => dispatch(requestTestSuccess(current)))
-    .catch(errors => dispatch(requestTestFail(errors)));
+      .then(current => dispatch(requestTestSuccess(current)))
+      .catch(errors => dispatch(requestTestFail(errors)));
   };
 }

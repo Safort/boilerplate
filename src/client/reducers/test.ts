@@ -1,10 +1,8 @@
 import * as actions from '../actions/test';
 
-
 const initialState = {
   isFetching: false,
 };
-
 
 export default function test(state = initialState, action) {
   switch (action.type) {
@@ -25,7 +23,6 @@ export default function test(state = initialState, action) {
         isFetching: false,
         errors: action.errors,
       };
-
 
     default:
       return state;
