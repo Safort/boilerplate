@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-
-import * as styles from './index.css';
+import styles from './index.css';
 
 const Menu = () => (
   <div className={styles.menu}>

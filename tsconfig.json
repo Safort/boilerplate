@@ -1,10 +1,13 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "sourceMap": true,
-        "jsx": "react",
-        "target": "es6",
-        "noEmit": true,
-        "strict": true,
-    }
+  "compilerOptions": {
+    "module": "es2020",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "jsx": "react",
+    "target": "es6",
+    "noEmit": true,
+    "strict": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

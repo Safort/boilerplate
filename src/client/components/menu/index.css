@@ -1,8 +1,8 @@
 .menu {
-    padding: 5px;
+  padding: 5px;
 }
 
 .item {
-    padding: 2px;
-    border: 1px solid;
+  padding: 2px;
+  margin: 5px;
 }

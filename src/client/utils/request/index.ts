@@ -1,4 +1,6 @@
-function request(reqMethod, url, otherData?: any) {
+type REQUEST = 'GET' | 'POST' | 'PUT' | 'OPTIONS' | 'DELETE';
+
+function request(reqMethod: REQUEST, url: string, otherData?: any) {
   const method = reqMethod || 'GET';
   const headers = otherData.headers || {};
   const body = otherData.body || null;
@@ -19,7 +21,7 @@ function request(reqMethod, url, otherData?: any) {
   }
 
   return fetch(url, requestConfig)
-    .then(res => {
+    .then((res) => {
       const contentType = res.headers.get('content-type');
 
       if (contentType && contentType.indexOf('application/json') !== -1) {
@@ -28,24 +30,24 @@ function request(reqMethod, url, otherData?: any) {
 
       return res;
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 }
 
-function get(url, otherData) {
+function get(url: string, otherData: unknown) {
   return request('GET', url, otherData);
 }
 
-function post(url, otherData) {
+function post(url: string, otherData: unknown) {
   return request('POST', url, otherData);
 }
 
-function put(url, otherData) {
+function put(url: string, otherData: unknown) {
   return request('PUT', url, otherData);
 }
 
-function remove(url, otherData) {
+function remove(url: string, otherData: unknown) {
   return request('DELETE', url, otherData);
 }
 

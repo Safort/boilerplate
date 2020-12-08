@@ -1,18 +1,14 @@
 import * as React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Switch, Route } from 'react-router';
 
-import { fetchTest } from '../actions/test';
 import Menu from '../components/menu';
 import Home from '../components/home';
 import Page1 from '../components/page1';
 import Page2 from '../components/page2';
 import NoMatch from '../components/no-match';
 
-import * as styles from './index.css';
+import styles from './index.css';
 
 const App = () => (
   <Router>
@@ -30,17 +26,4 @@ const App = () => (
   </Router>
 );
 
-function mapStateToProps({ test }) {
-  return { test };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    testActions: bindActionCreators({ fetchTest }, dispatch),
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(App);
+export default App;
