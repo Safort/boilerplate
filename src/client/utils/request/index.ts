@@ -1,6 +1,6 @@
 type REQUEST = 'GET' | 'POST' | 'PUT' | 'OPTIONS' | 'DELETE';
 
-function request(reqMethod: REQUEST, url: string, otherData?: any) {
+async function request(reqMethod: REQUEST, url: string, otherData?: any) {
   const method = reqMethod || 'GET';
   const headers = otherData.headers || {};
   const body = otherData.body || null;
@@ -20,19 +20,17 @@ function request(reqMethod: REQUEST, url: string, otherData?: any) {
     requestConfig.body = JSON.stringify(body);
   }
 
-  return fetch(url, requestConfig)
-    .then((res) => {
-      const contentType = res.headers.get('content-type');
+  try {
+    const res = await fetch(url, requestConfig);
+    const contentType = res.headers.get('content-type');
 
-      if (contentType && contentType.indexOf('application/json') !== -1) {
-        return res.json();
-      }
-
-      return res;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    if (contentType && contentType.indexOf('application/json') !== -1) {
+      return res.json();
+    }
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 function get(url: string, otherData: unknown) {

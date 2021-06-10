@@ -1,7 +1,7 @@
-import * as koaRouter from 'koa-router';
+import * as KoaRouter from 'koa-router';
 import test from './test';
 
-const router = new koaRouter();
+const router = new KoaRouter();
 
 test({ router });
 
