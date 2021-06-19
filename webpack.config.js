@@ -1,6 +1,7 @@
 const { resolve, join } = require('path');
 const { HotModuleReplacementPlugin } = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -54,6 +55,10 @@ module.exports = function (env, argv) {
     },
 
     plugins: [
+      new ESLintPlugin({
+        extensions: ['js', 'jsx', 'ts', 'tsx'],
+        // files: './src/**/*',
+      }),
       new BundleAnalyzerPlugin({
         analyzerMode: isProd ? 'disabled' : 'static',
         openAnalyzer: false,

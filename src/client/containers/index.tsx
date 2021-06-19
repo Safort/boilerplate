@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Switch, Route } from 'react-router';
 
@@ -7,10 +7,9 @@ import Home from '../components/home';
 import Page1 from '../components/page1';
 import Page2 from '../components/page2';
 import NoMatch from '../components/no-match';
-
 import styles from './index.css';
 
-const App = () => (
+const App = (): JSX.Element => (
   <Router>
     <div className={styles.app}>
       <Menu />

@@ -9,5 +9,5 @@ const app = new Koa();
 middleware({ app });
 
 app.listen(serverPort, serverHost, () => {
-  console.log(`\n Started on http://${serverHost}:${serverPort} \n`);
+  console.log(`\n Started on http://${serverHost}:${serverPort} \n`); // eslint-disable-line no-console
 });

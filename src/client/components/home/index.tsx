@@ -1,5 +1,5 @@
-import * as React from 'react';
+import React from 'react';
 
-const Home = () => <div className="home-page">Home content</div>;
+const Home = (): JSX.Element => <div className="home-page">Home content</div>;
 
 export default Home;

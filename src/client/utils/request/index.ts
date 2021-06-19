@@ -1,9 +1,18 @@
 type REQUEST = 'GET' | 'POST' | 'PUT' | 'OPTIONS' | 'DELETE';
 
-async function request(reqMethod: REQUEST, url: string, otherData?: any) {
+interface RequestParams {
+  headers: Record<string, string>;
+  body: string | Record<string, unknown>;
+}
+
+async function request(
+  reqMethod: REQUEST,
+  url: string,
+  otherData?: RequestParams,
+): Promise<unknown> {
   const method = reqMethod || 'GET';
-  const headers = otherData.headers || {};
-  const body = otherData.body || null;
+  const headers = otherData?.headers || {};
+  const body = otherData?.body || null;
   const defaultHeaders = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -29,25 +38,27 @@ async function request(reqMethod: REQUEST, url: string, otherData?: any) {
     }
     return res;
   } catch (err) {
-    console.log(err);
+    console.log(err); // eslint-disable-line no-console
+    return Promise.reject(err);
   }
 }
 
-function get(url: string, otherData: unknown) {
+function get(url: string, otherData: RequestParams): Promise<unknown> {
   return request('GET', url, otherData);
 }
 
-function post(url: string, otherData: unknown) {
+function post(url: string, otherData: RequestParams): Promise<unknown> {
   return request('POST', url, otherData);
 }
 
-function put(url: string, otherData: unknown) {
+function put(url: string, otherData: RequestParams): Promise<unknown> {
   return request('PUT', url, otherData);
 }
 
-function remove(url: string, otherData: unknown) {
+function remove(url: string, otherData: RequestParams): Promise<unknown> {
   return request('DELETE', url, otherData);
 }
 
-export default request;
 export { get, post, put, remove };
+
+export default request;

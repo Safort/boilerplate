@@ -1,11 +1,12 @@
 module.exports = {
   parser: 'babel-eslint',
-  extends: 'airbnb',
+  extends: ['airbnb', 'prettier'],
   plugins: ['react'],
   env: {
     browser: true,
     node: true,
     jest: true,
+    es2020: true,
   },
   parserOptions: {
     project: './tsconfig.json',
@@ -27,7 +28,6 @@ module.exports = {
   },
   rules: {
     treatUndefinedAsUnspecified: 0,
-    'no-console': 0,
     'consistent-return': 0,
     'no-else-return': 0,
     'no-underscore-dangle': 0,
@@ -36,5 +36,24 @@ module.exports = {
     'arrow-parens': 0,
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'import/extensions': 'off',
+    'no-console': 2,
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
   },
+  overrides: [
+    {
+      files: ['src/**/*.ts', 'src/**/*.tsx'],
+      parser: '@typescript-eslint/parser',
+      extends: [
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended',
+      ],
+      parserOptions: {
+        project: './tsconfig.json',
+      },
+      rules: {
+        '@typescript-eslint/no-explicit-any': 'error',
+      },
+    },
+  ],
 };
