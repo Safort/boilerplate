@@ -5,14 +5,14 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-module.exports = function (env, argv) {
+module.exports = (_, argv) => {
   const isProd = argv.mode === 'production';
 
   return {
-    context: resolve(__dirname, 'src/client'),
+    context: resolve(__dirname, 'src'),
     entry: './index.tsx',
     output: {
-      path: resolve(__dirname, 'app/public'),
+      path: resolve(__dirname, '../app/public'),
       publicPath: '/',
       filename: 'bundle.js',
     },
@@ -23,8 +23,8 @@ module.exports = function (env, argv) {
       rules: [
         {
           test: /\.(tsx?)|(js)?$/,
-          include: join(__dirname, 'src'),
-          exclude: [/node_modules/, /src\/client\/index.html/],
+          include: __dirname,
+          exclude: [/node_modules/, /src\/index.html/],
           use: [
             {
               loader: 'babel-loader',
@@ -41,7 +41,6 @@ module.exports = function (env, argv) {
               loader: 'css-loader',
               options: {
                 modules: {
-                  compileType: 'module',
                   localIdentName: '[local]--[hash:base64:5]',
                 },
               },
@@ -57,7 +56,6 @@ module.exports = function (env, argv) {
     plugins: [
       new ESLintPlugin({
         extensions: ['js', 'jsx', 'ts', 'tsx'],
-        // files: './src/**/*',
       }),
       new BundleAnalyzerPlugin({
         analyzerMode: isProd ? 'disabled' : 'static',
@@ -79,7 +77,7 @@ module.exports = function (env, argv) {
     },
 
     devServer: {
-      contentBase: join(__dirname, 'app'),
+      contentBase: join(__dirname, '../app'),
       compress: true,
       port: 3000,
       hot: !isProd,

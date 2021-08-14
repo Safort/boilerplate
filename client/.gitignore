@@ -1,0 +1,8 @@
+/node_modules
+/app
+
+/.vscode
+/src_dts
+
+/npm-debug.log
+/**/*.d.ts

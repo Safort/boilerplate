@@ -1,0 +1,42 @@
+{
+  "name": "boilerplate",
+  "version": "0.0.1",
+  "description": "just another boilerplate",
+  "main": "index.js",
+  "author": "Safort",
+  "license": "ISC",
+  "scripts": {
+    "start": "node ./app/index.js",
+    "build": "tsc ./src/index.ts --outDir ./app",
+    "watch": "tsc ./src/index.ts --outDir ./app --watch",
+    "lint": "eslint ./src --ext=jsx,tsx,js,ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "prettier": "prettier --write 'src/**/*.{ts,tsx}'",
+    "test": ""
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/react": "^17.0.17",
+    "@types/react-dom": "^17.0.9",
+    "@types/webpack-env": "^1.16.2",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-webpack-plugin": "^2.5.4",
+    "prettier": "^2.3.2",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "fastify": "^3.20.1",
+    "fastify-static": "^4.2.3"
+  }
+}
