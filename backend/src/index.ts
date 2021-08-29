@@ -2,11 +2,13 @@ import * as path from 'path';
 import Fastify from 'fastify';
 
 const root = path.join(__dirname, '../..', '/app/public');
-const fastify = Fastify();
+const fastify = Fastify({
+  logger: true,
+});
 
 fastify.register(require('fastify-static'), { root });
 
-fastify.listen(3000, function (err, address) {
+fastify.listen(3001, function (err, address) {
   if (err) {
     fastify.log.error(err);
     process.exit(1);
