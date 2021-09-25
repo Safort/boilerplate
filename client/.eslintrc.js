@@ -1,7 +1,7 @@
 module.exports = {
   parser: 'babel-eslint',
   extends: ['airbnb', 'prettier'],
-  plugins: ['react'],
+  plugins: ['react', 'sonarjs'],
   env: {
     browser: true,
     node: true,
@@ -39,6 +39,7 @@ module.exports = {
     'no-console': 1,
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
+    'sonarjs/cognitive-complexity': ['error', 7],
   },
   overrides: [
     {

@@ -12,7 +12,7 @@ module.exports = (_, argv) => {
     context: resolve(__dirname, 'src'),
     entry: './index.tsx',
     output: {
-      path: resolve(__dirname, '../app/public'),
+      path: resolve(__dirname, '../backend/app/public'),
       publicPath: '/',
       filename: 'bundle.js',
     },

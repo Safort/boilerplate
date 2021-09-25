@@ -8,7 +8,7 @@
   "scripts": {
     "start": "webpack serve",
     "build": "webpack-cli --mode=production",
-    "lint": "eslint ./src --ext=jsx,tsx,js,ts",
+    "lint": "eslint ./src --ext=jsx,tsx,js,ts && ts-prune",
     "typecheck": "tsc -p tsconfig.json",
     "prettier": "prettier --write 'src/**/*.{ts,tsx}'",
     "test": ""
@@ -36,10 +36,12 @@
     "eslint-plugin-import": "^2.24.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-sonarjs": "^0.10.0",
     "eslint-webpack-plugin": "^2.5.4",
     "html-webpack-plugin": "^5.3.2",
     "prettier": "^2.3.2",
     "style-loader": "^3.2.1",
+    "ts-prune": "^0.10.0",
     "typescript": "^4.3.5",
     "webpack": "^5.39.1",
     "webpack-bundle-analyzer": "^4.4.2",
