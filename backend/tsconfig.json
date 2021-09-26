@@ -8,9 +8,8 @@
     "noEmit": true,
     "strict": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["jest", "node"],
     "lib": ["dom", "es2020", "es2015.generator"]
   },
-  "include": ["backend", "client"],
+  "include": ["src", "client"],
   "exclude": ["node_modules"]
 }
