@@ -1,5 +1,4 @@
 const { resolve, join } = require('path');
-const { HotModuleReplacementPlugin } = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -62,7 +61,6 @@ module.exports = (_, argv) => {
         openAnalyzer: false,
       }),
       new CleanWebpackPlugin(),
-      new HotModuleReplacementPlugin(),
       new HtmlWebpackPlugin({
         title: 'Title',
         alwaysWriteToDisk: true,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import App from './containers';
+import App from './app';
 
 const renderApp = () => render(<App />, document.querySelector('.root'));
 
