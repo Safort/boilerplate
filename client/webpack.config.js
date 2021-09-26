@@ -77,7 +77,7 @@ module.exports = (_, argv) => {
     },
 
     devServer: {
-      contentBase: join(__dirname, '../app'),
+      static: join(__dirname, '../app'),
       compress: true,
       port: 3000,
       hot: !isProd,
