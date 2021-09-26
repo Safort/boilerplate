@@ -1,7 +1,7 @@
 import * as path from 'path';
 import Fastify from 'fastify';
 
-const root = path.join(__dirname, '../..', '/app/public');
+const root = path.join(__dirname, '..', '/app/public');
 const fastify = Fastify({
   logger: true,
 });
