@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Switch, Route } from 'react-router';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Menu from './components/menu';
 import Home from './containers/home';
@@ -9,20 +8,22 @@ import Page2 from './containers/page2';
 import NoMatch from './containers/no-match';
 import styles from './index.css';
 
-const App = (): JSX.Element => (
-  <Router>
-    <div className={styles.app}>
-      <Menu />
-      <div className="pages">
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/page1" component={Page1} />
-          <Route path="/page2" component={Page2} />
-          <Route component={NoMatch} />
-        </Switch>
+function App() {
+  return (
+    <BrowserRouter>
+      <div className={styles.app}>
+        <Menu />
+        <div className="pages">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/page1" element={<Page1 />} />
+            <Route path="/page2" element={<Page2 />} />
+            <Route element={<NoMatch />} />
+          </Routes>
+        </div>
       </div>
-    </div>
-  </Router>
-);
+    </BrowserRouter>
+  );
+}
 
 export default App;
